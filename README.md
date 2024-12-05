@@ -2,7 +2,9 @@
 
 ## Menu Ordering System
 
-This python program is for an interactive ordering system from a food truck menu. The code is structured to carry out multiple aspects of a food order. Those aspects are the following:
+Include a note in the README section of your repo specifying code source and its location within your repo
+
+This python program is for an interactive ordering system from a food truck menu. The code [located here](https://github.com/jrich71/python-challenge-1/blob/main/menu.py) is structured to carry out multiple aspects of a food order. Those aspects are the following:
 
 * Welcome the user to the Food Truck
 * Present the Menu Options
