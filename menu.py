@@ -50,7 +50,7 @@ menu = {
     }
 }
 
-# -------------------------Start the Script-------------------------------------
+# -------------------------Welcome to the Food Truck------------------------------
 
 # 1. Set up order list. Order list will store a list of dictionaries for
 # menu item name, item price, and quantity ordered
@@ -93,7 +93,6 @@ while place_order:
 # ---Get the User to Select Option(s) to Present the Related Menu Category's Sub-menu Items, and Prices---
     
     # Get the customer's input by asking for a number, we want an int
-    # Could we (should we) not require an int right away: menu_category = int(input("Type menu number: "))?
     menu_category = input("Enter the menu number: ")
 
     # Check if the customer's input is a number
@@ -197,13 +196,11 @@ while place_order:
         keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o: ").capitalize()
 
         # 5. Check the customer's input
-        # Wouldn't this just be " == 'Y'" and then 'else' for the 'N'? Yet I tested and that approach doesn't work.
         if keep_ordering == 'Y'or keep_ordering == 'N':
             
             # Keep ordering
             if keep_ordering == 'Y':
                 place_order = True
-                #Why do we break here, wouldn't we want to go back through the loop(s)?
                 break
                 
                 # Exit the keep ordering question loop and complete the order
@@ -221,32 +218,32 @@ while place_order:
 
 # -------------------Display Back the Complete Order----------------------------
 
-# Print out the customer's order
-print("This is what we are preparing for you.\n")
-
-# Uncomment the following line to check the structure of the order print(order)
-print(order)
-print()
 print("Item name                 | Price  | Quantity")
 print("--------------------------|--------|----------")
 
-#   Unformatted results of complete order
-#   Why don't I understand the formatting aspect of this exercise?
-for item in order:
-    print(f"{item['Item name']}: {item['Price']} x {item['Quantity']}")
+# 6. Loop through the items in the customer's order
+for i in range(len(order)):
+
+    # 7. Store the dictionary items as variables
+    item_name = order[i]["Item name"]
+    price = order[i]["Price"]
+    quantity = order[i]["Quantity"]
+
+    # 8. Calculate the number of spaces for formatted printing
+    num_item_spaces = 26 - len(item_name)
+    num_price_spaces = 6 - len(str(price))
+
+    # 9. Create space strings
+    item_spaces = " " * num_item_spaces
+    price_spaces = " " * num_price_spaces
+
+    # 10. Print the item name, price, and quantity
+    print(f"{item_name}{item_spaces}| ${price}{price_spaces}| {quantity}")
 
 # 11. Calculate the cost of the order using list comprehension
-# Multiply the price by quantity for each item in the order list
+# Multiply the price by quantity for each item in the order list, then sum()
+# and print the prices.
 
-prices = [float(item['Price']) * int(item['Quantity']) for item in order]
+total_price = sum([item["Price"] * item["Quantity"] for item in order])
 
-# Line 204 without list comprehension, just for example
-# prices = []
-# for item in order:
-#     prices.append(float(item['Price'])*int(item['Quantity']))
-
-# Why are we printing the list "order" that's assigned to the variable "prices", is it just to show us the result?                 
-print(prices)
-
-# Print the sum of all the prices associated with the "prices" variable
-print(f"Your total is: ${sum(prices):.2f}")
+print(f"\nTotal price: ${total_price:.2f}")
