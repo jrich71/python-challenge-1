@@ -163,7 +163,6 @@ while place_order:
                     quantity = input(f"How many {selection_name}s do you want? ")
 
                     # Check if the quantity variable is a number, default to 1 if not
-                    # How do we defult to 1?
                     if quantity.isdigit():
 
                     # Add the item name, price, and quantity to the order list
@@ -244,6 +243,6 @@ for i in range(len(order)):
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
 
-total_price = sum([item["Price"] * item["Quantity"] for item in order])
+total_price = sum([item["Price"] * int(item["Quantity"]) for item in order])
 
 print(f"\nTotal price: ${total_price:.2f}")
